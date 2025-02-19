@@ -7,7 +7,7 @@ const corsOptions = {
 const fs = require('fs')
 const path = require('path')
 const bodyParser = require('body-parser')
-const PORT = 5000
+const port = 5000
 const dotenv = require('dotenv')
 const OpenAI = require('openai')
 
@@ -37,4 +37,4 @@ app.post('/api', (req, res) => {
     main(res, req.body.text)
 })
 
-app.listen(PORT, () => console.log(`Your great server is listening on port ${PORT}`))
+app.listen(process.env.PORT || port, () => console.log(`Your great server is listening on port ${port}`))
