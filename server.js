@@ -15,10 +15,9 @@ app.use(cors(corsOptions))
 app.use(bodyParser.json())
 dotenv.config()
 
-const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY
-})
+const openai = new OpenAI()
 
+// apiKey: process.env.OPENAI_API_KEY
 const speechFile = path.resolve("./audio/speech.mp3")
 
 async function main(res, text) {
