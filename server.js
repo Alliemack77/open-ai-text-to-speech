@@ -11,14 +11,15 @@ const path = require('path')
 const bodyParser = require('body-parser')
 const port = 5000
 const OpenAI = require('openai')
+const apiKey = process.env.API_KEY
 
 app.use(cors(corsOptions))
 app.use(bodyParser.json())
 
-console.log("KEY:", process.env.API_KEY)
+console.log("KEY:", apiKey)
 
 const openai = new OpenAI({
-    apiKey: process.env.API_KEY
+    apiKey: apiKey
 })
 
 const speechFile = path.resolve("./audio/speech.mp3")
