@@ -1,5 +1,7 @@
 const express = require('express')
 const app = express()
+const dotenv = require('dotenv')
+dotenv.config()
 const cors = require('cors')
 const corsOptions = {
     origin: ['http://localhost:5173']
@@ -8,16 +10,17 @@ const fs = require('fs')
 const path = require('path')
 const bodyParser = require('body-parser')
 const port = 5000
-const dotenv = require('dotenv')
 const OpenAI = require('openai')
 
 app.use(cors(corsOptions))
 app.use(bodyParser.json())
-dotenv.config()
 
-const openai = new OpenAI()
+console.log("KEY:", process.env.API_KEY)
 
-// apiKey: process.env.OPENAI_API_KEY
+const openai = new OpenAI({
+    apiKey: process.env.API_KEY
+})
+
 const speechFile = path.resolve("./audio/speech.mp3")
 
 async function main(res, text) {
