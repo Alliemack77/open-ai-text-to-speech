@@ -16,17 +16,6 @@ const apiKey = process.env.API_KEY
 app.use(cors(corsOptions))
 app.use(bodyParser.json())
 
-app.get('/', (req, res) => {
-    res.sendFile(
-        path.join(__dirname, '../client/dist/index.html'), 
-        function (err) {
-            if(err) {
-                res.status(500).send(err)
-            }
-        }
-    )
-})
-
 const openai = new OpenAI({
     apiKey: apiKey
 })
@@ -45,8 +34,16 @@ async function main(res, text) {
     res.send(buffer)
 }
 
+app.get('/', (req, res) => {
+    res.send(
+        {
+            fruits: ['blueberry', 'mango', 'watermelon' ]
+        }
+    )
+})
+
 app.post('/api', (req, res) => {
     main(res, req.body.text)
 })
 
-app.listen(process.env.PORT || port, () => console.log(`Your great server is listening on port ${port}`))
+app.listen(process.env.PORT || port, () => console.log(`Your server is listening on port ${port}`))
