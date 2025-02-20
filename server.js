@@ -16,6 +16,16 @@ const apiKey = process.env.API_KEY
 app.use(cors(corsOptions))
 app.use(bodyParser.json())
 
+app.get('/', (req, res) => {
+    res.sendFile(
+        path.join(__dirname, '../client/dist/index.html'), 
+        function (err) {
+            if(err) {
+                res.status(500).send(err)
+            }
+        }
+    )
+})
 
 const openai = new OpenAI({
     apiKey: apiKey
