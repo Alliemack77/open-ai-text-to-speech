@@ -16,7 +16,6 @@ const apiKey = process.env.API_KEY
 app.use(cors(corsOptions))
 app.use(bodyParser.json())
 
-console.log("KEY:", apiKey)
 
 const openai = new OpenAI({
     apiKey: apiKey
