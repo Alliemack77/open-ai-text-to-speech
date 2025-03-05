@@ -33,8 +33,6 @@ function App() {
           console.error("Something bad happened!", error)
         }
       }
-      
-
     }
 
     sendText()
